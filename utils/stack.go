@@ -35,3 +35,11 @@ func (s *stack) ReverseRotate() {
 	s.Push(s.slice[lastIndex])
 	s.slice = s.slice[:lastIndex+1]
 }
+
+func (s *stack) Peek() int {
+	return s.slice[0]
+}
+
+func (s *stack) IsEmpty() bool {
+	return len(s.slice) == 0
+}
