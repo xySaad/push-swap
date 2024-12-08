@@ -2,13 +2,15 @@ package utils
 
 type stack struct {
 	slice []int
+	Size  int
 }
 
 func NewStack(slice []int) stack {
-	return stack{slice}
+	return stack{slice, len(slice)}
 }
 
 func (s *stack) Pop() int {
+	s.Size--
 	defer func() {
 		s.slice = s.slice[1:]
 	}()
@@ -17,6 +19,7 @@ func (s *stack) Pop() int {
 }
 
 func (s *stack) Push(new int) {
+	s.Size++
 	s.slice = append([]int{new}, s.slice...)
 }
 
