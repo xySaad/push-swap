@@ -3,13 +3,13 @@ package utils
 import "fmt"
 
 type List struct {
-	a stack
-	b stack
+	A stack
+	B stack
 }
 
 func (l *List) Print() {
-	fmt.Println(l.a)
-	fmt.Println(l.b)
+	fmt.Println(l.A)
+	fmt.Println(l.B)
 }
 
 func NewList(slice []int) List {
@@ -18,28 +18,28 @@ func NewList(slice []int) List {
 
 func (l *List) Sa() {
 	fmt.Println("sa")
-	l.a.Swap()
+	l.A.Swap()
 }
 func (l *List) Sb() {
 	fmt.Println("sb")
-	l.b.Swap()
+	l.B.Swap()
 }
 func (l *List) Pa() {
 	fmt.Println("pa")
-	l.a.Push(l.b.Pop())
+	l.A.Push(l.B.Pop())
 }
 func (l *List) Pb() {
 	fmt.Println("pb")
-	l.b.Push(l.a.Pop())
+	l.B.Push(l.A.Pop())
 }
 
 func (l *List) Ra() {
 	fmt.Println("ra")
-	l.a.Rotate()
+	l.A.Rotate()
 }
 func (l *List) Rb() {
 	fmt.Println("rb")
-	l.b.Rotate()
+	l.B.Rotate()
 }
 
 func (l *List) Rr() {
@@ -50,15 +50,15 @@ func (l *List) Rr() {
 
 func (l *List) Rra() {
 	fmt.Println("rra")
-	l.a.ReverseRotate()
+	l.A.ReverseRotate()
 }
 func (l *List) Rrb() {
 	fmt.Println("rrb")
-	l.b.ReverseRotate()
+	l.B.ReverseRotate()
 }
 
 func (l *List) Rrr() {
 	fmt.Println("rrr")
-	l.a.ReverseRotate()
-	l.b.ReverseRotate()
+	l.A.ReverseRotate()
+	l.B.ReverseRotate()
 }
