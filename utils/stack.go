@@ -40,6 +40,10 @@ func (s *stack) Peek() int {
 	return s.slice[0]
 }
 
+func (s *stack) Top() int {
+	return s.Peek()
+}
+
 func (s *stack) IsEmpty() bool {
 	return len(s.slice) == 0
 }
