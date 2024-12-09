@@ -5,46 +5,47 @@ type stack struct {
 	Size  int
 }
 
-func NewStack(slice []int) stack {
-	return stack{slice, len(slice)}
+func NewStack(input []int) stack {
+	var reversed []int
+	for i := len(input) - 1; i >= 0; i-- {
+		reversed = append(reversed, input[i])
+	}
+
+	return stack{reversed, len(input)}
 }
 
-func (s *stack) Pop() int {
+func (s *stack) pop() int {
 	s.Size--
 	defer func() {
-		s.slice = s.slice[1:]
+		s.slice = s.slice[:s.Size]
 	}()
 
-	return s.slice[0]
+	return s.slice[s.Size]
 }
 
-func (s *stack) Push(new int) {
+func (s *stack) push(new int) {
 	s.Size++
-	s.slice = append([]int{new}, s.slice...)
+	s.slice = append(s.slice, new)
 }
 
-func (s *stack) Swap() {
-	first := s.slice[0]
-	s.slice[0] = s.slice[1]
-	s.slice[1] = first
+func (s *stack) swap() {
+	first := s.slice[s.Size-1]
+	s.slice[s.Size-1] = s.slice[s.Size-2]
+	s.slice[s.Size-2] = first
 }
 
-func (s *stack) Rotate() {
-	s.slice = append(s.slice, s.Pop())
+func (s *stack) rotate() {
+	s.slice = append(s.slice, s.pop())
 }
 
-func (s *stack) ReverseRotate() {
+func (s *stack) reverseRotate() {
 	lastIndex := len(s.slice) - 1
-	s.Push(s.slice[lastIndex])
+	s.push(s.slice[lastIndex])
 	s.slice = s.slice[:lastIndex+1]
 }
 
 func (s *stack) Peek() int {
 	return s.slice[0]
-}
-
-func (s *stack) Top() int {
-	return s.Peek()
 }
 
 func (s *stack) IsEmpty() bool {
