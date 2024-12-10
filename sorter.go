@@ -2,5 +2,6 @@ package main
 
 import "push-swap/utils"
 
-func Sort(list utils.List) {
+func Sort(l *utils.List) {
+
 }

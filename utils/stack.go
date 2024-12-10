@@ -1,8 +1,8 @@
 package utils
 
 type stack struct {
-	slice          []int
-	Size, Max, Min int
+	slice     []int
+	Size, Min int
 }
 
 func NewStack(input []int) stack {
@@ -19,16 +19,28 @@ func (s *stack) pop() int {
 	defer func() {
 		s.slice = s.slice[:s.Size]
 	}()
-
-	return s.slice[s.Size]
+	top := s.slice[s.Size]
+	if top < s.Min {
+		oldMin := s.Min
+		s.Min = 2*s.Min - top
+		return oldMin
+	}
+	return top
 }
 
-func (s *stack) push(new int) {
-	if new > s.Max {
-		s.Max = new
+func (s *stack) push(x int) {
+	if s.Size == 0 {
+		s.Min = x
+		s.slice = append(s.slice, x)
+	} else {
+		if x < s.Min {
+			s.slice = append(s.slice, 2*x-s.Min)
+			s.Min = x
+		} else {
+			s.slice = append(s.slice, x)
+		}
 	}
 	s.Size++
-	s.slice = append(s.slice, new)
 }
 
 func (s *stack) swap() {
