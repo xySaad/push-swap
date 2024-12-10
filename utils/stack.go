@@ -16,15 +16,14 @@ func NewStack(input []int) stack {
 
 func (s *stack) pop() int {
 	s.Size--
-	defer func() {
-		s.slice = s.slice[:s.Size]
-	}()
 	top := s.slice[s.Size]
 	if top < s.Min {
 		oldMin := s.Min
 		s.Min = 2*s.Min - top
 		return oldMin
 	}
+	s.slice = s.slice[:s.Size]
+
 	return top
 }
 
